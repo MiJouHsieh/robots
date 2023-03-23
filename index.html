@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robots</title>
+  </head>
+  <body>
+    <div class="users-container">
+      <!--  render users  -->
+      <div class="robots">ROBOTS</div>
+      <div class="dataPanel">
+        <div class="user-card">
+          <div class="user-avatar">
+            <img src="" alt="" />
+          </div>
+          <p class="user-name">name</p>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="user-modal"
+        data-id="1"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-name" id="1">Modal name surname</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="modal-avatar">
+                <img class="modal-avatar-img" src="" alt="" data-img-id="1" />
+              </div>
+              <div class="modal-info">
+                <p class="modal-age"></p>
+                <p class="modal-gender"></p>
+                <p class="modal-birthday"></p>
+                <p class="modal-region"></p>
+                <p class="modal-email"></p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
