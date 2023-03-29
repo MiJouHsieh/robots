@@ -1,5 +1,6 @@
+'use strict'
 const BASE_URL = "https://user-list.alphacamp.io";
-const INDEX_URL = BASE_URL + "/api/v1/users";
+const INDEX_URL = BASE_URL + "/api/v1/users/";
 const users = [];
 const dataPanel = document.querySelector(".dataPanel");
 function renderUsers(data) {
@@ -35,11 +36,11 @@ function modalInfo(id) {
     const user = response.data;
     modalName.innerText = `${user.name + " " + user.surname}`;
     modalImg.src = user.avatar;
-    modalAge.innerText = user.age;
-    modalGender.innerText = user.gender;
-    modalBirthday.innerText = user.birthday;
-    modalRegion.innerText = user.region;
-    modalEmail.innerText = user.email;
+    modalAge.innerText = `age: ${user.age}`;
+    modalGender.innerText = `gender: ${user.gender}`;
+    modalBirthday.innerText = `birthday: ${user.birthday}`;
+    modalRegion.innerText = `region: ${user.region}`;
+    modalEmail.innerText = `email: ${user.email}`;
   });
 }
 axios.get(INDEX_URL).then(function (response) {
