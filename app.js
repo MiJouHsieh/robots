@@ -3,10 +3,39 @@ const BASE_URL = "https://user-list.alphacamp.io";
 const INDEX_URL = BASE_URL + "/api/v1/users/";
 const users = [];
 const dataPanel = document.querySelector(".dataPanel");
+const pagination = document.querySelector(".pagination");
+const USERS_PER_PAGE = 12
+
+function getUsersByPage(page) {
+  const startIndex = (page - 1) * USERS_PER_PAGE
+  return users.slice(startIndex, startIndex + USERS_PER_PAGE)
+}
+function renderPaginator (amount) {
+  const numberOfPages = Math.ceil(amount / USERS_PER_PAGE)
+  let pageHtml = `
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    `
+  for(let page = 1; page <= numberOfPages; page++) {
+    pageHtml += `
+      <li class="page-item"><a class="page-link" href="#" data-page="${page}">${page}</a></li>
+    `
+  }
+  pageHtml += `
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    `
+  pagination.innerHTML = pageHtml
+}
 function renderUsers(data) {
-  users.push(...data);
   let htmlContent = ``;
-  users.forEach((item) => {
+  data.forEach((item) => {
     htmlContent += `
         <div class="user-card">
           <div class="user-avatar">
@@ -43,13 +72,24 @@ function modalInfo(id) {
     modalEmail.innerText = `email: ${user.email}`;
   });
 }
-axios.get(INDEX_URL).then(function (response) {
-  const userList = response.data.results;
-  renderUsers(userList);
-});
+
 dataPanel.addEventListener("click", function clickedOnDataPanel(event) {
   if (event.target.matches(".user-avatar img")) {
     let id = Number(event.target.dataset.id);
     modalInfo(id);
   }
 });
+
+pagination.addEventListener('click', function clickedOnPagination(event) {
+  if (event.target.tagName !== 'A') return
+  const clickedPage = Number(event.target.dataset.page)
+  renderUsers(getUsersByPage(clickedPage))
+})
+
+axios.get(INDEX_URL)
+.then(function (response) {
+  users.push(...response.data.results)
+  renderUsers(getUsersByPage(1));
+  renderPaginator (users.length)
+})
+.catch((err) => console.log(err))
