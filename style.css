@@ -9,7 +9,7 @@ body {
 }
 .users-container {
   margin: 0 auto;
-  padding-top: 7rem;
+  padding: 7rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,6 +49,7 @@ div.robots {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin: 3rem 0;
 }
 .user-card {
   display: flex;
@@ -179,6 +180,10 @@ img.modal-avatar-img {
   text-align: center;
 }
 
+nav .pagination {
+  margin: 7rem 0 0 0;
+}
+
 @media screen and (min-width: 660px) {
   .dataPanel :nth-child(2n).user-card {
     transform: translateY(70px);
@@ -219,11 +224,13 @@ img.modal-avatar-img {
     transform: scale(0.002, 0.002);
   }
 }
+
 @media screen and (min-width: 970px) {
   .user-card {
     margin: 1.5rem 0;
   }
 }
+
 @keyframes circle {
   0% {
     transform: rotate(0deg) translateX(-500px) scale(0.2) rotate(0deg);
